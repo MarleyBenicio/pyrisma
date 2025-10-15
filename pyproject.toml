@@ -15,4 +15,4 @@ requires-python = ">=3.9"
 dependencies = []
 
 [project.urls]
-Homepage = "https://github.com/seuusuario/minha-biblioteca"
+Homepage = "https://github.com/MarleyBenicio/pyrisma"
