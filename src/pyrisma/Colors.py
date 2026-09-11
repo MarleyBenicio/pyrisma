@@ -59,12 +59,12 @@ class Colors:
 
     self.icons = {
       'void':              '',
-      'info':             f'{chr(10069)} ',
-      'error':            f'{chr(10060)} ',
-      'debug':            f'{chr(10067)} ',
-      'success':          f'{chr(9989)} ',
-      'warning':          f'{chr(10071)} ',
-      'highlight':        f'{chr(10062)} ',
+      'info':             f'{chr(10069)}{chr(160)}',
+      'error':            f'{chr(10060)}{chr(160)}',
+      'debug':            f'{chr(9935)}{chr(160)} ',
+      'success':          f'{chr(9989)}{chr(160)}',
+      'warning':          f'{chr(10071)}{chr(160)}',
+      'highlight':        f'{chr(10062)}{chr(160)}',
     }
 
   # Métodos utilitários
@@ -78,55 +78,85 @@ class Colors:
     return self.colors['reset']
 
  # Sucesso
-  def success(self, msg: str, style: str = None, icon: bool = False, icon_blink: bool = False, time_clock: bool = False) -> None:
-    style = style if style else 'normal'
-    _clock = f'[{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}] ' if time_clock else ''
-    name_icon = 'void' if not icon else 'success'
-    blink_icon = 'blink' if icon_blink else 'normal'
-    print(f"{_clock}{self.colors[blink_icon]}{self.icons[name_icon]}{self.colors['green']}{self.colors[style]}{msg}{self.reset()}")
-    return None
+  def success(self, msg: str = None, **kwargs) -> None:
+    style: str = 'normal'
+    icon: bool = 'void'
+    time_clock: bool = False
+    
+    icon = kwargs.get('icon', icon)
+    style = kwargs.get('style', style)
 
+    _clock: datetime = f'[{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}] ' if kwargs.get('time_clock') == True else ''
+
+    print(f"{_clock}{self.icons[icon]}{self.colors['bright_green']}{self.colors[style]}{msg}{self.reset()}")
+    return None
+  
   # Erro
-  def error(self, msg: str, style: str = None, icon: bool = False, icon_blink: bool = False, time_clock: bool = False) -> None:
-    style = style if style else 'normal'
-    _clock = f'[{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}] ' if time_clock else ''
-    name_icon = 'void' if not icon else 'error'
-    blink_icon = 'blink' if icon_blink else 'normal'
-    print(f"{_clock}{self.colors[blink_icon]}{self.icons[name_icon]}{self.colors['bright_red']}{self.colors[style]}{msg}{self.reset()}")
+  def error(self, msg: str = None, **kwargs) -> None:
+    style: str = 'normal'
+    icon: bool = 'void'
+    time_clock: bool = False
+    
+    icon = kwargs.get('icon', icon)
+    style = kwargs.get('style', style)
+
+    _clock: datetime = f'[{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}] ' if kwargs.get('time_clock') == True else ''
+
+    print(f"{_clock}{self.icons[icon]}{self.colors['bright_red']}{self.colors[style]}{msg}{self.reset()}")
     return None
 
   # Aviso
-  def warning(self, msg: str, style: str = None, icon: bool = False, icon_blink: bool = False, time_clock: bool = False) -> None:
-    style = style if style else 'normal'
-    _clock = f'[{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}] ' if time_clock else ''
-    name_icon = 'void' if not icon else 'warning'
-    blink_icon = 'blink' if icon_blink else 'normal'
-    print(f"{_clock}{self.colors[blink_icon]}{self.icons[name_icon]}{self.colors['bright_yellow']}{self.colors[style]}{msg}{self.reset()}")
+  def warning(self, msg: str = None, **kwargs) -> None:
+    style: str = 'normal'
+    icon: bool = 'void'
+    time_clock: bool = False
+    
+    icon = kwargs.get('icon', icon)
+    style = kwargs.get('style', style)
+
+    _clock: datetime = f'[{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}] ' if kwargs.get('time_clock') == True else ''
+
+    print(f"{_clock}{self.icons[icon]}{self.colors['bright_yellow']}{self.colors[style]}{msg}{self.reset()}")
     return None
 
   # Informação
-  def info(self, msg: str, style: str = None, icon: bool = False, icon_blink: bool = False, time_clock: bool = False) -> None:
-    style = style if style else 'normal'
-    _clock = f'[{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}] ' if time_clock else ''
-    name_icon = 'void' if not icon else 'info'
-    blink_icon = 'blink' if icon_blink else 'normal'
-    print(f"{_clock}{self.colors[blink_icon]}{self.icons[name_icon]}{self.colors['bright_blue']}{self.colors[style]}{msg}{self.reset()}")
+  def info(self, msg: str, **kwargs) -> None:
+    style: str = 'normal'
+    icon: bool = 'void'
+    time_clock: bool = False
+    
+    icon = kwargs.get('icon', icon)
+    style = kwargs.get('style', style)
+
+    _clock: datetime = f'[{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}] ' if kwargs.get('time_clock') == True else ''
+
+    print(f"{_clock}{self.icons[icon]}{self.colors['blue']}{self.colors[style]}{msg}{self.reset()}")
     return None
 
   # Debug
-  def debug(self, msg: str, style: str = None, icon: bool = False, icon_blink: bool = False, time_clock: bool = False) -> None:
-    style = style if style else 'normal'
-    _clock = f'[{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}] ' if time_clock else ''
-    name_icon = 'void' if not icon else 'debug'
-    blink_icon = 'blink' if icon_blink else 'normal'
-    print(f"{_clock}{self.colors[blink_icon]}{self.icons[name_icon]}{self.colors['bright_magenta']}{self.colors[style]}{msg}{self.reset()}")
+  def debug(self, msg: str, **kwargs) -> None:
+    style: str = 'normal'
+    icon: bool = 'void'
+    time_clock: bool = False
+    
+    icon = kwargs.get('icon', icon)
+    style = kwargs.get('style', style)
+
+    _clock: datetime = f'[{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}] ' if kwargs.get('time_clock') == True else ''
+
+    print(f"{_clock}{self.icons[icon]}{self.colors['bright_magenta']}{self.colors[style]}{msg}{self.reset()}")
     return None
 
   # Importante / Destaque
-  def highlight(self, msg: str, style: str = None, icon: bool = False, icon_blink: bool = False, time_clock: bool = False) -> None:
-    style = style if style else 'normal'
-    _clock = f'[{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}] ' if time_clock else ''
-    name_icon = 'void' if not icon else 'highlight'
-    blink_icon = 'blink' if icon_blink else 'normal'
-    print(f"{_clock}{self.colors[blink_icon]}{self.icons[name_icon]}{self.colors['bright_white']}{self.colors[style]}{msg}{self.reset()}")
+  def highlight(self, msg: str, **kwargs) -> None:
+    style: str = 'normal'
+    icon: bool = 'void'
+    time_clock: bool = False
+    
+    icon = kwargs.get('icon', icon)
+    style = kwargs.get('style', style)
+
+    _clock: datetime = f'[{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}] ' if kwargs.get('time_clock') == True else ''
+
+    print(f"{_clock}{self.icons[icon]}{self.colors['bright_white']}{self.colors[style]}{msg}{self.reset()}")
     return None
